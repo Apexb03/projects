@@ -1,70 +1,49 @@
 
-abstract class Customer {
-	int customerID;
-	String customerName;
-	long phoneNum;
-	float billAmount;
-	public Customer(int customerID, String customerName, long phoneNum, float billAmount) {
-		this.customerID = customerID;
-		this.customerName = customerName;
-		this.phoneNum = phoneNum;
-		this.billAmount = billAmount;
-	}
-}
-
-class RegularCustomer extends Customer{
-	RegularCustomer(int customerID,String customerName,long phoneNum,float billAmount)
-	{
-		super(customerID,customerName,phoneNum,billAmount);
-	}
-	void printCustomerInfo(){
-		System.out.println("Customer ID:" +customerID);
-		System.out.println("Customer Name:" +customerName);
-		System.out.println("Customer Phone No:" +phoneNum);
-		System.out.println("Bill Amount:" +billAmount);
-	}
-	void computeBillAmount(){
-		int revisit = 0;
-		double discount;
-		float bill;
-		discount=billAmount*0.3;
-		bill=(float) (billAmount-discount);
-		System.out.println("Discounted Bill:" +bill);
-		System.out.println("----------");
-		if(revisit==1)
-			revisitDiscount();
-		revisit=1;
-	}
-	void revisitDiscount(){
-		System.out.println("Customer Revisited" );
-		double revisitDis;
-		float revisitBill;
-		revisitDis=billAmount*0.8;
-		revisitBill=(float) (billAmount-revisitDis);
-		System.out.println("Bill After Revisit:" +revisitBill);
-		System.out.println("----------");
-		System.out.println("----------");
-		System.out.println("PRIVILEGED CUSTOMERS DETAILS:");
-	}
+public class Customer {
+	private int iCustID;
+	private String sCustName;
+	private String sAddress;
+	private long lTeleNo;
 	
-}
-class PrivilegedCustomer extends Customer{
-	PrivilegedCustomer(int customerID,String customerName,long phoneNum,float billAmount)
-	{
-		super(customerID,customerName,phoneNum,billAmount);
+	public Customer(int iCustID, String sCustName, String sAddress, long lTeleNo) {
+		super();
+		this.iCustID = iCustID;
+		this.sCustName = sCustName;
+		this.sAddress = sAddress;
+		this.lTeleNo = lTeleNo;
 	}
-	void printCustomerInfo(){
-		System.out.println("Customer ID:" +customerID);
-		System.out.println("Customer Name:" +customerName);
-		System.out.println("Customer Phone No:" +phoneNum);
-		System.out.println("Bill Amount:" +billAmount);
+
+	public int getiCustID() {
+		return iCustID;
 	}
-	void computeBillAmount(){
-		double discount;
-		float bill;
-		discount=billAmount*0.5;
-		bill=(float) (billAmount-discount);
-		System.out.println("Discounted Bill:" +bill);
-		System.out.println("----------");
+
+	public String getsCustName() {
+		return sCustName;
+	}
+
+	public String getsAddress() {
+		return sAddress;
+	}
+
+	public long getlTeleNo() {
+		return lTeleNo;
+	}
+	boolean validateTeleNo(){
+		if((lTeleNo/1000000000)>0 || (lTeleNo/1000000000)<11)
+			return true;
+		else
+			return false;
+	}
+	boolean validateCustNmae(){
+		if(sCustName.length()>=4 || sCustName.length()<=20)
+			return true;
+		else
+			return false;
+	}
+	void displayDetails(){
+		System.out.println("Customer ID:" +iCustID);
+		System.out.println("Customer Name:" +sCustName);
+		System.out.println("Customer Address:" +sAddress);
+		System.out.println("Customer phone Number:" +lTeleNo);
 	}
 }
